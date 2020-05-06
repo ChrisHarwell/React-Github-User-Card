@@ -1,101 +1,45 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
-import Card from "./Components/Card";
+import Card from "./Components/MyCard";
+import MyCard from "./Components/MyCard";
+import FollowerCard from "./Components/FollowerCard";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      avatar: "",
-      userName: "",
-      location: "",
-      name: "",
-      profileURL: "",
-      followers: "",
-      following: "",
-      bio: "",
-      follower_avatar: "",
-      follower_userName: "",
-      follower_location: "",
-      follower_name: "",
-      follower_profileURL: "",
-      follower_followers: "",
-      follower_following: "",
+      userData: {},
+      followerData: [], // setting this to an array so we can map over it
     };
-  }
-  getFollowers() {
-    axios
-      .get(`https://api.github.com/users/ChrisHarwell/followers`)
-      .then((res) => {
-        console.log(res.data);
-          this.setState({
-            follower_avatar: res.data.avatar_url,
-            follower_userName: res.data.login,
-            follower_name: res.data.login,
-            follower_profileURL: res.data.html_url,
-          });
-        })
-      .catch((err) => console.error(err));
-  }
-
-  getProfile() {
-    axios
-      .get(`https://api.github.com/users/ChrisHarwell`)
-      .then((res) => {
-        console.log(res.data.login);
-
-        this.setState({
-          avatar: res.data.avatar_url,
-          userName: res.data.login,
-          location: res.data.location,
-          name: res.data.name,
-          profileURL: res.data.html_url,
-          followers: res.data.followers,
-          following: res.data.following,
-          bio: res.data.bio,
-        });
-      })
-      .catch((err) => console.error(err));
   }
 
   componentDidMount() {
-    console.log("CDM Invoked");
-    this.getProfile();
-    this.getFollowers();
+    axios
+        .get('https://api.github.com/users/ChrisHarwell')
+        .then(res => {
+          this.setState({userData: res.data})
+        })
+        .catch(err => {
+          console.err('An error occurred ', err);
+        })
 
-    this.map(data => {
-      return(
-        <Card
-        avatar_url={data.follower_avatar}
-        login={data.follower_userName}
-        location={data.follower_location}
-        name={data.follower_name}
-        profileURL={data.follower_profileURL}
-        followers={data.follower_followers}
-        following={data.follower_following}
-      />
-      )
-
-    })
+        axios
+        .get('https://api.github.com/users/ChrisHarwell/followers')
+        .then(res => {
+          this.setState({followerData: res.data})
+        })
+        .catch(err => {
+          console.err('An error occurred ', err);
+        })
+    
   }
-  render() {
-    return (
-      <div className="App">
-        <Card
-          avatar_url={this.state.avatar}
-          login={this.state.userName}
-          location={this.state.location}
-          name={this.state.name}
-          profileURL={this.state.profileURL}
-          followers={this.state.followers}
-          following={this.state.following}
-          bio={this.state.bio}
-        />
 
-      </div>
-    );
+  render() {
+    return <div className="App">
+      <MyCard userData={this.state.userData}/>
+      <FollowerCard followerData={this.state.followerData} />
+    </div>;
   }
 }
-
 export default App;
