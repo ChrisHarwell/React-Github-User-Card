@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card }from '@material-ui/core';
-import '../index.scss'
+import './css/MyCards.min.css'
 class MyCard extends Component {
   componentDidMount() {
 
@@ -11,7 +11,7 @@ class MyCard extends Component {
     return (
       <Card className='root'>
         <h3 className="name">{this.props.userData.name}</h3>
-        <img className = '' src={this.props.userData.avatar_url} alt="" />
+        <img className = 'profile-pic' src={this.props.userData.avatar_url} alt="" />
         <div className="card-info"></div>
 
         <p className=''>

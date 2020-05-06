@@ -1,0 +1,12 @@
+.root{
+    border:1px solid black;
+    max-width: 50vh;
+    margin-left: 37.5vw;
+}
+
+.profile-pic {
+    max-width: 20vw;
+    border-radius: 30%;
+}
+
+/*# sourceMappingURL=MyCards.min.css.map */
