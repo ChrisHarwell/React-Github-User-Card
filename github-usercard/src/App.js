@@ -36,10 +36,12 @@ class App extends Component {
   }
 
   render() {
-    return <div className="App">
-      <MyCard userData={this.state.userData}/>
-      <FollowerCard followerData={this.state.followerData} />
-    </div>;
+    return (
+      <div className="App">
+        <MyCard userData={this.state.userData}/>
+        <FollowerCard followerData={this.state.followerData} />
+      </div>
+    );
   }
 }
 export default App;

@@ -12,7 +12,7 @@ class MyCard extends Component {
       <Card className='root'>
         <h3 className="name">{this.props.userData.name}</h3>
         <img className = 'profile-pic' src={this.props.userData.avatar_url} alt="" />
-        <div className="card-info"></div>
+        <div className="user-info">
 
         <p className=''>
           <b>UserName:</b> {this.props.userData.login}
@@ -21,7 +21,7 @@ class MyCard extends Component {
           <b>Location:</b> {this.props.userData.location}
         </p>
         <p>
-          <b>Profile:</b> {this.props.userData.name} <a>{this.props.userData.html_url}</a>
+          <b>Profile:</b> {this.props.userData.name} 
         </p>
         <p>
           <b>Followers:</b> {this.props.userData.followers}
@@ -30,6 +30,7 @@ class MyCard extends Component {
           <b>Following:</b> {this.props.userData.following}
         </p>
         <p><b>Bio:</b> {this.props.userData.bio}</p>
+        </div>
       </Card>
     );
   }
