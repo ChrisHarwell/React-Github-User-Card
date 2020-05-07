@@ -1,0 +1,24 @@
+.root{
+    border:1px solid black;
+    max-width: 50vh;
+    margin-left: 37.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.profile-pic {
+    margin: 0 10%;
+    max-width: 20vw;
+    border-radius: 30%;
+}
+
+.user-info {
+    text-align: center;
+}
+
+.background {
+    background-color:#FF7F50;
+}
+
+/*# sourceMappingURL=MyCards.min.css.map */
